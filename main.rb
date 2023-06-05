@@ -179,14 +179,14 @@ class Main
     case type
     when 1
       puts "Please enter the volume of the wagon:"
-      volume = gets.chomp.to_i
-      puts "Cargo wagon with volume: #{volume} created"
-      CargoWagon.new(volume)
+      total_place = gets.chomp.to_i
+      puts "Cargo wagon with volume: #{total_place} created"
+      CargoWagon.new(total_place)
     when 2
       puts "Please enter seats in the wagon:"
-      seats = gets.chomp.to_i
-      puts "Passenger wagon with seats: #{seats} created"
-      PassengerWagon.new(seats)
+      total_place = gets.chomp.to_i
+      puts "Passenger wagon with seats: #{total_place} created"
+      PassengerWagon.new(total_place)
     end
   end
 
@@ -232,7 +232,7 @@ class Main
   end
 
   def select_wagon(wagons = [])
-    @trains.each do | train |
+    @trains.each do |train|
       wagons += train.wagons
     end
     return wagons
@@ -244,12 +244,12 @@ class Main
     if wagon.type.eql?(:cargo)
       puts "Select volume: "
       volume = gets.chomp.to_i
-      wagon.take_volumes(volume)
+      wagon.take_place(volume)
     else
-      wagon.take_seat
+      wagon.take_place
     end
-    wagon.free
-    wagon.taken
+    wagon.list_free_place
+    wagon.list_taken_place
   end
 end
 
