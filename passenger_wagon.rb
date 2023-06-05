@@ -1,28 +1,12 @@
 require_relative 'wagon'
 
 class PassengerWagon < Wagon
-  attr_accessor :seats, :take_seats, :free_seats
 
-  def initialize(seats)
-    super
-    @seats = seats
-    @type = :passenger
-    @free_seats = seats
-    @take_seats = 0
+  def initialize(total_place)
+    super(:passenger, total_place)
   end
 
-  def take_seat
-    if @take_seats < @seats
-      @take_seats += 1
-      @free_seats -= 1
-    end
-  end
-
-  def free
-    puts "Free seats: #{free_seats}/#{seats}"
-  end
-
-  def taken
-    puts "Taken sets: #{take_seats}/#{seats}"
+  def take_place
+    @used_place += 1 if free_place > 0
   end
 end
